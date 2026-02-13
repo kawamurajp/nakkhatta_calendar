@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahānikāya Buddhist Calendar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Serif+Thai:wght@400;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f1f5f9; /* Lighter background */
+            color: #064e3b; /* Forest Green text */
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, .serif-font {
+            font-family: 'Lora', serif;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+        }
+        .glass-nav:hover {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .a4-landscape-container {
+            width: 100%;
+            max-width: 1123px;
+            aspect-ratio: 297 / 210;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        @media print {
+            header, footer, nav, button, .no-print {
+                display: none !important;
+            }
+            body { background: white !important; color: black !important; }
+            #calendar-print-area { 
+                box-shadow: none !important; 
+                border: none !important; 
+                width: 100% !important; 
+                max-width: none !important; 
+                margin: 0 !important; 
+            }
+            .calendar-grid-container { 
+                background-color: #ffffff !important; 
+                border: none !important; 
+                border-radius: 0 !important;
+            }
+        }
+
+        .calendar-grid-container {
+            background-color: #ffffff;
+            height: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(6, 78, 59, 0.1);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 78, 59, 0.2);
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+  }
+}
+</script>
+</head>
+<body class="bg-slate-100 text-emerald-950">
+    <div id="root"></div>
+</body>
+</html>

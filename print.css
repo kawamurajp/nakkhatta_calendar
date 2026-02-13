@@ -1,0 +1,29 @@
+/* 
+ * MAHANIKAYA CALENDAR - PRINT STYLES
+ */
+
+@media print {
+    /* Hide UI elements if native print is used */
+    header, footer, nav, button, .no-print, .glass-nav {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    #calendar-print-area {
+        width: 100%;
+        max-width: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .calendar-grid-container {
+        border: 1px solid #eee !important;
+        box-shadow: none !important;
+    }
+}
