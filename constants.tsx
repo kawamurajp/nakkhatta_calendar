@@ -27,25 +27,25 @@ export const BUDDHIST_SYMBOLS = {
     </svg>
   ),
   fullMoon: (
-    <svg className="w-10 h-10 drop-shadow-sm opacity-80" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="45" fill="#ffffff" stroke="#e5e7eb" strokeWidth="1" />
+    <svg className="w-10 h-10 drop-shadow-sm" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="45" fill="#fefce8" />
     </svg>
   ),
   newMoon: (
-    <svg className="w-10 h-10 drop-shadow-sm opacity-80" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="45" fill="#d1fae5" /> {/* Very light emerald */}
+    <svg className="w-10 h-10 drop-shadow-sm" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="45" fill="#a7f3d0" />
     </svg>
   ),
   halfMoonRight: (
-    <svg className="w-10 h-10 drop-shadow-sm opacity-80" viewBox="0 0 100 100">
-      <path d="M50 5 A45 45 0 0 0 50 95 Z" fill="#d1fae5" /> {/* Left (Dark/Sukka Uposatha Color) */}
-      <path d="M50 5 A45 45 0 0 1 50 95 Z" fill="#ffffff" stroke="#e5e7eb" strokeWidth="1" /> {/* Right (Light) */}
+    <svg className="w-10 h-10 drop-shadow-sm" viewBox="0 0 100 100">
+      <path d="M50 5 A45 45 0 0 0 50 95 Z" fill="#a7f3d0" /> {/* Left (Dark/Sukka Uposatha Color) */}
+      <path d="M50 5 A45 45 0 0 1 50 95 Z" fill="#fefce8" /> {/* Right (Light) */}
     </svg>
   ),
   halfMoonLeft: (
-    <svg className="w-10 h-10 drop-shadow-sm opacity-80" viewBox="0 0 100 100">
-      <path d="M50 5 A45 45 0 0 0 50 95 Z" fill="#ffffff" stroke="#e5e7eb" strokeWidth="1" /> {/* Left (Light) */}
-      <path d="M50 5 A45 45 0 0 1 50 95 Z" fill="#d1fae5" /> {/* Right (Dark/Sukka Uposatha Color) */}
+    <svg className="w-10 h-10 drop-shadow-sm" viewBox="0 0 100 100">
+      <path d="M50 5 A45 45 0 0 0 50 95 Z" fill="#fefce8" /> {/* Left (Light) */}
+      <path d="M50 5 A45 45 0 0 1 50 95 Z" fill="#a7f3d0" /> {/* Right (Dark/Sukka Uposatha Color) */}
     </svg>
   )
 };

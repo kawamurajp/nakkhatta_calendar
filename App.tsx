@@ -127,14 +127,9 @@ const App: React.FC = () => {
         return true;
       };
 
-      // Force fixed dimensions for the export to match A4 Landscape ratio and ensure desktop layout
-      // A4 Landscape at 96 DPI is approx 1123px x 794px
-      // We set width and height explicitly to override mobile viewports
       const dataUrl = await toPng(calendarRef.current, { 
         backgroundColor: '#ffffff', 
-        width: 1123,
-        height: 794,
-        pixelRatio: 4, // High quality for professional printing
+        pixelRatio: 5, // Extra high-quality for professional printing
         filter: filter,
         cacheBust: true,
         style: {
@@ -144,10 +139,7 @@ const App: React.FC = () => {
           padding: '0',
           borderRadius: '0',
           boxShadow: 'none',
-          transform: 'none',
-          // Force layout to behave like desktop
-          display: 'flex',
-          flexDirection: 'column'
+          transform: 'none'
         }
       });
 

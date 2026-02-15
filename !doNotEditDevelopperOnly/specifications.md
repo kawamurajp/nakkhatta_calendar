@@ -6,6 +6,9 @@
 
 ##Technical
 
+##General
+- Do not edit anything inside the !doNotEditDevelopperOnly folder and data folder.
+
 ##UI
 - "Application_THEME: A serene, kind, quiet and conservative forest."
 ###Pakkha_Page

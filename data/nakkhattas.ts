@@ -244,7 +244,7 @@ export const NAKSHATRAS: Nakshatra[] = [
     westernZodiac: "Virgo", 
     season: Season.GIMHA, 
     pakkha: "1",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Corvus_constellation_map.svg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Corvus_constellation_map.png",
     tithi14: "Yes"
   },
   { 
