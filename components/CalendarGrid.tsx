@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HalfLunarMonth, Season, EventDef } from '../types';
 import { BUDDHIST_SYMBOLS } from '../constants';
 import { NAKSHATRAS } from '../data/nakkhattas';
@@ -26,7 +26,6 @@ const WikiLink: React.FC<{ query: string; children: React.ReactNode; className?:
   </a>
 );
 
-// Added missing CommonsLink component definition to fix the "Cannot find name 'CommonsLink'" error
 const CommonsLink: React.FC<{ imageUrl: string; children: React.ReactNode; className?: string }> = ({ imageUrl, children, className }) => (
   <a 
     href={imageUrl} 
@@ -44,7 +43,6 @@ const DayCell: React.FC<{ day: any; isLast: boolean; isKanha: boolean; paliData:
   const isMoonDay = !!paliData;
   const isSukka = !isKanha;
   
-  // Use even lighter emerald for backgrounds to keep it "kind" and "soft"
   const bgColor = (isSukka && isMoonDay) ? 'bg-emerald-100/70' : 'bg-emerald-50/40';
 
   return (
@@ -116,6 +114,7 @@ const DayCell: React.FC<{ day: any; isLast: boolean; isKanha: boolean; paliData:
 };
 
 const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, imageUrl, nakkhattaImages, isCurrent }) => {
+  const [imageError, setImageError] = useState(false);
   const upperRowDays = halfMonth.days.slice(0, 8);
   const lowerRowDays = halfMonth.days.slice(8);
   const isKala = halfMonth.isKanha;
@@ -163,26 +162,47 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
   return (
     <div className={`calendar-grid-container flex flex-col gap-0.5 w-full p-6 bg-white relative transition-all duration-500 h-full overflow-hidden`}>
       
-      {/* Header Info Area */}
-      <div className="absolute top-4 right-8 text-right z-10">
-        <div className="text-emerald-950 font-black text-xl leading-none tracking-tighter serif-font">BE {beYear}</div>
-        <div className="text-stone-400 font-bold text-[7px] uppercase mt-0.5 tracking-widest">AD {adYear}</div>
-        <div className="text-emerald-700 font-black text-[9px] uppercase tracking-wider mt-2 serif-font">
-          {halfMonth.monthNumber} {monthName} {moonPhase}
+      {/* Background Image Rendering */}
+      {imageUrl && !imageError && (
+        <div className="absolute inset-0 z-0 opacity-[0.08] mix-blend-multiply pointer-events-none">
+          <img 
+            src={imageUrl} 
+            alt="Background" 
+            className="w-full h-full object-cover" 
+            onError={() => setImageError(true)}
+          />
         </div>
-        <div className="text-[7px] text-stone-400 mt-0.5 font-bold tracking-tighter italic">({dateRange})</div>
+      )}
+
+      {/* Header Section: Adjusted layout to move info adjacent to title */}
+      <div className="flex flex-row items-end justify-center gap-6 mb-2 pt-1 z-10 relative w-full">
+        {/* Center Title Section - Reduced size slightly */}
+        <div className="flex flex-col items-center">
+          <h2 className="text-xl font-black text-emerald-950 tracking-tighter uppercase italic serif-font">
+            {halfMonth.season} {halfMonth.seasonalPakkhaNumber}
+          </h2>
+          <div className="h-0.5 w-full bg-emerald-700 mt-0.5 opacity-20 rounded-full"></div>
+        </div>
+
+        {/* Shifted Info Box: Moved from top-right to adjacent to title */}
+        <div className="flex flex-col justify-end pb-0.5 h-full pl-3 border-l border-emerald-100">
+          <div className="text-emerald-700 font-black text-[7px] uppercase tracking-wider serif-font leading-none">
+            {halfMonth.monthNumber} {monthName} {moonPhase}
+          </div>
+          <div className="text-[6px] text-stone-400 font-bold tracking-tighter italic leading-none mt-1">
+            ({dateRange})
+          </div>
+        </div>
       </div>
 
-      {/* Center Title Section */}
-      <div className="flex flex-col items-center justify-center mb-2 pt-1 z-10 relative">
-        <h2 className="text-4xl font-black text-emerald-950 tracking-tighter uppercase italic serif-font">
-          {halfMonth.season} {halfMonth.seasonalPakkhaNumber}
-        </h2>
-        <div className="h-0.5 w-1/4 bg-emerald-700 mt-1 opacity-20 rounded-full"></div>
+      {/* Floating BE/AD Year Info (Top Right) */}
+      <div className="absolute top-4 right-8 text-right z-20">
+        <div className="text-emerald-950 font-black text-base leading-none tracking-tighter serif-font">BE {beYear}</div>
+        <div className="text-stone-400 font-bold text-[6px] uppercase mt-0.5 tracking-widest">AD {adYear}</div>
       </div>
 
       {/* Calendar Grid Section */}
-      <div className="flex-1 flex flex-col gap-1.5 relative z-10 min-h-0 py-2 px-2">
+      <div className="flex-1 flex flex-col gap-1.5 relative z-10 min-h-0 py-1.5 px-2">
         <div className="grid grid-cols-8 gap-1.5 flex-1 min-h-0">
           {upperRowDays.map((day) => (
             <DayCell 
@@ -214,19 +234,19 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
       </div>
 
       {/* Refined Footer Area */}
-      <div className="mt-2 flex flex-col relative z-10 px-4 h-[160px]">
+      <div className="mt-2 flex flex-col relative z-10 px-4 h-[180px]">
         
         {/* Top Info row: Image and Main Nakkhatta Details */}
-        <div className="flex flex-row-reverse justify-between items-center mb-2 flex-1 min-h-0">
+        <div className="flex flex-row-reverse justify-between items-center mb-1 flex-1 min-h-0">
           
           {nak1 ? (
             <div className="flex flex-row-reverse gap-8 items-center h-full">
-              {/* Constellation Image: No border, no background as requested */}
-              <div className="w-36 h-36 flex-shrink-0 flex items-center justify-center group overflow-hidden">
-                {nak1.imageUrl ? (
-                  <CommonsLink imageUrl={nak1.imageUrl}>
+              {/* Constellation Image: Prioritize generated AI images */}
+              <div className="w-32 h-32 flex-shrink-0 flex items-center justify-center group overflow-hidden">
+                {(nakkhattaImages[nak1.number] || nak1.imageUrl) ? (
+                  <CommonsLink imageUrl={nakkhattaImages[nak1.number] || nak1.imageUrl || '#'}>
                     <img 
-                      src={nak1.imageUrl} 
+                      src={nakkhattaImages[nak1.number] || nak1.imageUrl || ''} 
                       alt={nak1.pali} 
                       className="max-w-full max-h-full object-contain transition-transform group-hover:scale-105" 
                       onError={(e) => { e.currentTarget.style.display = 'none'; }}
@@ -238,21 +258,22 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
               </div>
               
               <div className="flex flex-col text-right justify-center">
-                <div className="flex items-center gap-1 justify-end mb-1 opacity-40">
-                  <span className="text-[10px] text-emerald-500">★</span>
+                <div className="flex items-center gap-1 justify-end mb-0.5 opacity-40">
+                  <span className="text-[8px] text-emerald-500">★</span>
                 </div>
                 <div className="relative inline-block">
-                  <span className="absolute -top-1 -left-4 text-[9px] font-black text-stone-300">#{nak1.number}</span>
-                  <WikiLink query={nak1.pali} className="text-4xl font-black text-emerald-950 uppercase tracking-tighter leading-none block serif-font">
+                  <span className="absolute -top-1 -left-4 text-[7px] font-black text-stone-300">#{nak1.number}</span>
+                  {/* Reduced Nakkhatta Title size */}
+                  <WikiLink query={nak1.pali} className="text-xl font-black text-emerald-950 uppercase tracking-tighter leading-none block serif-font">
                       {nak1.pali}
                   </WikiLink>
                 </div>
-                <div className="text-[12px] font-bold text-emerald-600 italic leading-tight mt-1 serif-font">
+                <div className="text-[9px] font-bold text-emerald-600 italic leading-tight mt-0.5 serif-font">
                   "{nak1.meaning}"
                 </div>
-                <div className="mt-3 pt-2 border-t border-emerald-50/50">
-                  <span className="text-[7px] text-stone-400 font-bold uppercase tracking-tighter block mb-0.5 opacity-60">Celestial Mansion Alignment</span>
-                  <WikiLink query={nak1.associatedStars} className="text-[10px] text-stone-500 font-bold leading-tight italic block truncate flex items-center justify-end gap-1">
+                <div className="mt-2 pt-1 border-t border-emerald-50/50">
+                  <span className="text-[6px] text-stone-400 font-bold uppercase tracking-tighter block mb-0.5 opacity-60">Celestial Mansion Alignment</span>
+                  <WikiLink query={nak1.associatedStars} className="text-[9px] text-stone-500 font-bold leading-tight italic block truncate flex items-center justify-end gap-1">
                     <span>★</span> {nak1.associatedStars}
                   </WikiLink>
                 </div>
@@ -264,19 +285,18 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
             </div>
           )}
 
-          {/* Reserved space on the left */}
           <div className="flex-1"></div>
         </div>
 
-        {/* Bottom Quote section: Expanded and single-line as requested */}
-        <div className="w-full pt-2 border-t border-emerald-50/30 flex flex-col gap-1 overflow-hidden">
-          {halfMonth.season === Season.GIMHA && (
-             <div className="text-emerald-900/70 text-[10px] font-bold serif-font italic whitespace-nowrap overflow-hidden text-ellipsis w-full text-center">
-               [Ref.G] "As the sun blazes in Giṃha, let the heart find cool refuge in the Dhamma-forest."
-             </div>
-          )}
+        {/* Bottom Quote Section: Spiritual reflections */}
+        <div className="w-full pt-3 border-t border-emerald-100/30 flex flex-col gap-1.5 overflow-hidden mb-2">
+          <div className="text-emerald-900/80 text-[11px] font-bold serif-font italic text-center px-4 leading-relaxed">
+            {halfMonth.season === Season.HEMANTA && `[Ref.H] "Cold winds of Hemanta remind the wise to kindle the inner fire of Samādhi."`}
+            {halfMonth.season === Season.GIMHA && `[Ref.G] "As the sun blazes in Giṃha, let the heart find cool refuge in the Dhamma-forest."`}
+            {halfMonth.season === Season.VASSANA && `[Ref.V] "Vassāna rains nourish the earth; so does the Dhamma wash away the stains of the heart."`}
+          </div>
           {nak1?.paliQuote && (
-             <div className="text-stone-400 text-[9px] font-serif italic whitespace-nowrap overflow-hidden text-ellipsis w-full text-center">
+             <div className="text-stone-500 text-[10px] font-serif italic text-center px-8 max-w-4xl mx-auto">
                [Ref.{nak1.number}] "{nak1.paliQuote} {nak1.qualityQuote ? `— ${nak1.qualityQuote}` : ''}"
              </div>
           )}
