@@ -43,10 +43,10 @@ const DayCell: React.FC<{ day: any; isLast: boolean; isKanha: boolean; paliData:
   const isMoonDay = !!paliData;
   const isSukka = !isKanha;
   
-  const bgColor = (isSukka && isMoonDay) ? 'bg-emerald-100/70' : 'bg-emerald-50/40';
+  const bgColor = 'bg-transparent';
 
   return (
-    <div className={`relative border border-emerald-50/50 h-full flex flex-col p-1 transition-all rounded-lg overflow-hidden ${bgColor} hover:bg-emerald-100/80 shadow-sm`}>
+    <div className={`relative border border-stone-300 h-full flex flex-col p-1 transition-all rounded-lg overflow-hidden ${bgColor} hover:bg-stone-50 shadow-sm`}>
       
       {/* Background Moon Image */}
       {isMoonDay && (
@@ -127,10 +127,11 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
   const dateRange = `${formatDate(halfMonth.startDate)} - ${formatDate(halfMonth.endDate)}`;
 
   const getPaliTerm = (isKala: boolean, titthi: number, isLast: boolean) => {
-    if (!isKala && isLast) return { term: "Puṇṇamī", full: "Puṇṇamī (Full Moon)", query: "Purnima" };
-    if (isKala && isLast) return { term: "Amāvasī", full: "Amāvasī (New Moon)", query: "Amavasya" };
-    if (!isKala && titthi === 8) return { term: "Sukka Aṭṭhamī", full: "Sukka Aṭṭhamī (Waxing 8th)", query: "Uposatha" };
-    if (isKala && titthi === 8) return { term: "Kāḷa Aṭṭhamī", full: "Kāḷa Aṭṭhamī (Waning 8th)", query: "Uposatha" };
+    if (titthi === 8) return { term: "Aṭṭhamī", full: "Aṭṭhamī (8th)", query: "Uposatha" };
+    if (isLast) {
+      if (titthi === 14) return { term: "Cātuddasī", full: "Cātuddasī (14th)", query: "Uposatha" };
+      if (titthi === 15) return { term: "Pañcadasī", full: "Pañcadasī (15th)", query: "Purnima" };
+    }
     return null;
   };
 
@@ -175,7 +176,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
       )}
 
       {/* Header Section: Adjusted layout to move info adjacent to title */}
-      <div className="flex flex-row items-end justify-center gap-6 mb-2 pt-1 z-10 relative w-full">
+      <div className="flex flex-row items-end justify-center gap-6 mb-2 pt-1 z-10 relative w-full pl-12">
         {/* Center Title Section - Reduced size slightly */}
         <div className="flex flex-col items-center">
           <h2 className="text-xl font-black text-emerald-950 tracking-tighter uppercase italic serif-font">
@@ -242,7 +243,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
           {nak1 ? (
             <div className="flex flex-row-reverse gap-8 items-center h-full">
               {/* Constellation Image: Prioritize generated AI images */}
-              <div className="w-32 h-32 flex-shrink-0 flex items-center justify-center group overflow-hidden">
+              <div className="w-48 h-48 flex-shrink-0 flex items-center justify-center group overflow-hidden">
                 {(nakkhattaImages[nak1.number] || nak1.imageUrl) ? (
                   <CommonsLink imageUrl={nakkhattaImages[nak1.number] || nak1.imageUrl || '#'}>
                     <img 
@@ -289,14 +290,14 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
         </div>
 
         {/* Bottom Quote Section: Spiritual reflections */}
-        <div className="w-full pt-3 border-t border-emerald-100/30 flex flex-col gap-1.5 overflow-hidden mb-2">
-          <div className="text-emerald-900/80 text-[11px] font-bold serif-font italic text-center px-4 leading-relaxed">
+        <div className="w-full pt-3 border-t border-emerald-100/30 flex flex-col gap-1.5 overflow-hidden mb-2 items-start">
+          <div className="text-emerald-900/80 text-[11px] font-bold serif-font italic text-left px-4 leading-relaxed">
             {halfMonth.season === Season.HEMANTA && `[Ref.H] "Cold winds of Hemanta remind the wise to kindle the inner fire of Samādhi."`}
             {halfMonth.season === Season.GIMHA && `[Ref.G] "As the sun blazes in Giṃha, let the heart find cool refuge in the Dhamma-forest."`}
             {halfMonth.season === Season.VASSANA && `[Ref.V] "Vassāna rains nourish the earth; so does the Dhamma wash away the stains of the heart."`}
           </div>
           {nak1?.paliQuote && (
-             <div className="text-stone-500 text-[10px] font-serif italic text-center px-8 max-w-4xl mx-auto">
+             <div className="text-stone-500 text-[10px] font-serif italic text-left px-4 max-w-4xl">
                [Ref.{nak1.number}] "{nak1.paliQuote} {nak1.qualityQuote ? `— ${nak1.qualityQuote}` : ''}"
              </div>
           )}

@@ -43,10 +43,9 @@ const DatabaseView: React.FC<DatabaseViewProps> = ({ data, onClose }) => {
   }, []);
 
   const getPaliPhase = (isKanha: boolean, titthi: number, daysCount: number) => {
-    if (!isKanha && titthi === 15) return "Puṇṇamī (Full Moon)";
-    if (isKanha && titthi === daysCount) return "Amāvasī (New Moon)";
-    if (!isKanha && titthi === 8) return "Sukka Aṭṭhamī (Waxing 8th)";
-    if (isKanha && titthi === 8) return "Kaṇha Aṭṭhamī (Waning 8th)";
+    if (titthi === 8) return "Aṭṭhamī (8th)";
+    if (titthi === 14 && daysCount === 14) return "Cātuddasī (14th)";
+    if (titthi === 15) return "Pañcadasī (15th)";
     return null;
   };
 

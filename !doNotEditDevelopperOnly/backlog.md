@@ -14,16 +14,26 @@
   - **Description:** A WebGL component that allows users to explore the current Nakkhatta position in a 3D celestial sphere.
 
 ###Others
-- Decayed red rose Booquet Theme
+- Decayed red rose Booquet Theme for "the Former Red One"
+
 - "Ardent Day and Night" Theme
-## Hemanta 8 
-  - "Water Pot" Theme** (UX)
-    - **Status:** Planned
-    - **Description:** A specialized UI skin for the final Pakkha of the cold season, representing the *Dhamma-ghata* (vessel of truth).
+  - "Water Pot" Theme** (UX, "a water-pot set on a stand, full of water up to the brim", https://www.dhammatalks.org/suttas/MN/MN119.html#:~:text=a%20water%2Dpot%20set%20on%20a%20stand%2C%20full%20of%20water%20up%20to%20the%20brim)
+    
 ###Hemanta 8?
 - OvadaPatimokkha, First Vinaya, Sponteneous & No Planning, a huge gathering, and veneration towards the Dhamma by a huge gathering of Bhikkhus and EVEN the BUDDHA.
 
+#prompts (for ChatGTP marginal art generation, https://chatgpt.com/images)
 
-#prompts (for ChatGTP marginal art generation)
-Please add marginal art integrated with the calendar I uploaded. Its theme is "A gentle, serene, kind, soft, quiet, and conservative forest." 
-and the curent events and the nakkhatta's theme.
+Can you add the marginal art to this calendar without adding anything inside the calendar boxes? The theme is spring, hand, forest, monk, and water-pot.
+
+
+Please add marginal art integrated with the calendar I uploaded. 
+Theme is spring, hand, forest, monk, water-pot.
+
+
+
+
+The timely themes are the curent events and the nakkhatta's theme.
+
+The monks style of wearing robe is the ancient style (bear shoulder) but not contemporary.
+The general theme is “kindness and forest”
