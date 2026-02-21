@@ -163,18 +163,6 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
   return (
     <div className={`calendar-grid-container flex flex-col gap-0.5 w-full p-6 bg-white relative transition-all duration-500 h-full overflow-hidden`}>
       
-      {/* Background Image Rendering */}
-      {imageUrl && !imageError && (
-        <div className="absolute inset-0 z-0 opacity-[0.08] mix-blend-multiply pointer-events-none">
-          <img 
-            src={imageUrl} 
-            alt="Background" 
-            className="w-full h-full object-cover" 
-            onError={() => setImageError(true)}
-          />
-        </div>
-      )}
-
       {/* Header Section: Adjusted layout to move info adjacent to title */}
       <div className="flex flex-row items-end justify-center gap-6 mb-2 pt-1 z-10 relative w-full pl-12">
         {/* Center Title Section - Reduced size slightly */}

@@ -262,7 +262,7 @@ export const NAKSHATRAS: Nakshatra[] = [
     westernZodiac: "Virgo/Libra", 
     season: Season.GIMHA, 
     pakkha: "2",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ee/Virgo_constellation_map.svg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/77/Virgo_constellation_map.png",
     tithi14: "No"
   },
   { 

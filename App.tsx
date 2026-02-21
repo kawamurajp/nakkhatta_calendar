@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { GoogleGenAI } from "@google/genai";
-import { toPng } from 'https://esm.sh/html-to-image';
+import { toPng } from 'html-to-image';
 import { generateThaiYear } from './calendarUtils';
 import CalendarGrid from './components/CalendarGrid';
 import DatabaseView from './components/DatabaseView';
@@ -12,6 +12,7 @@ import TithiView from './components/TithiView';
 import ScaleView from './components/ScaleView';
 import PeriodsView from './components/PeriodsView';
 import PromptView from './components/PromptView';
+import MasaView from './components/MasaView';
 import { Season } from './types';
 import { NAKSHATRAS } from './data/nakkhattas';
 
@@ -20,9 +21,8 @@ const App: React.FC = () => {
   const thaiYearData = useMemo(() => generateThaiYear(year), [year]);
   const [selectedMonthIdx, setSelectedMonthIdx] = useState<number>(0);
   const [currentPakkhaId, setCurrentPakkhaId] = useState<string | null>(null);
-  const [pakkhaImages, setPakkhaImages] = useState<Record<string, string | null>>({});
   const [nakkhattaImages, setNakkhattaImages] = useState<Record<number, string | null>>({});
-  const [view, setView] = useState<'calendar' | 'dates' | 'nakkhatta' | 'events' | 'glossary' | 'requirements' | 'tithi' | 'scale' | 'periods' | 'prompt'>('calendar');
+  const [view, setView] = useState<'calendar' | 'dates' | 'nakkhatta' | 'masa' | 'events' | 'glossary' | 'requirements' | 'tithi' | 'scale' | 'periods' | 'prompt'>('calendar');
   const [isExporting, setIsExporting] = useState(false);
   const calendarRef = useRef<HTMLDivElement>(null);
 
@@ -73,23 +73,6 @@ const App: React.FC = () => {
       // Fixed: Initialize GoogleGenAI right before API calls with exact environment variable string as per guidelines
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
-      if (!pakkhaImages[currentHalfMonth.id]) {
-        try {
-          const seasonDesc = { [Season.HEMANTA]: "misty temple", [Season.GIMHA]: "sunny temple", [Season.VASSANA]: "rainy temple" }[currentHalfMonth.season];
-          const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash-image',
-            contents: { parts: [{ text: `Thai mural art style, ${seasonDesc}, serene Buddhist atmosphere. High resolution, elegant.` }] },
-            config: { imageConfig: { aspectRatio: "16:9" } }
-          });
-          for (const part of response.candidates?.[0]?.content?.parts || []) {
-            if (part.inlineData) {
-              setPakkhaImages(prev => ({ ...prev, [currentHalfMonth.id]: `data:image/png;base64,${part.inlineData.data}` }));
-              break;
-            }
-          }
-        } catch (e) { console.warn("Pakkha image failed", e); }
-      }
-
       for (const nak of currentNakshatras) {
         if (!nakkhattaImages[nak.number]) {
           try {
@@ -110,7 +93,7 @@ const App: React.FC = () => {
     };
     const timer = setTimeout(generateImages, 1000);
     return () => clearTimeout(timer);
-  }, [selectedMonthIdx, currentHalfMonth, currentNakshatras, pakkhaImages, nakkhattaImages]);
+  }, [selectedMonthIdx, currentHalfMonth, currentNakshatras, nakkhattaImages]);
 
   const handleExportImage = async () => {
     if (calendarRef.current === null) return;
@@ -184,6 +167,7 @@ const App: React.FC = () => {
                 {id: 'calendar', label: 'Calendar'},
                 {id: 'dates', label: 'Dates'},
                 {id: 'nakkhatta', label: 'Nakkhatta'},
+                {id: 'masa', label: 'Masa'},
                 {id: 'tithi', label: 'Tithi'},
                 {id: 'scale', label: 'Scale'},
                 {id: 'periods', label: 'Yāma'},
@@ -262,7 +246,6 @@ const App: React.FC = () => {
                   halfMonth={currentHalfMonth} 
                   beYear={thaiYearData.beYear}
                   adYear={year}
-                  imageUrl={pakkhaImages[currentHalfMonth.id] || undefined}
                   nakkhattaImages={nakkhattaImages}
                   isCurrent={currentPakkhaId === currentHalfMonth.id}
                 />
@@ -280,6 +263,7 @@ const App: React.FC = () => {
         )}
         {view === 'dates' && <DatabaseView data={thaiYearData} onClose={() => setView('calendar')} />}
         {view === 'nakkhatta' && <NakkhattaView currentPakkha={todayActualPakkha} />}
+        {view === 'masa' && <MasaView onClose={() => setView('calendar')} />}
         {view === 'tithi' && <TithiView onClose={() => setView('calendar')} />}
         {view === 'scale' && <ScaleView onClose={() => setView('calendar')} />}
         {view === 'periods' && <PeriodsView onClose={() => setView('calendar')} />}
