@@ -223,10 +223,10 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
       </div>
 
       {/* Refined Footer Area */}
-      <div className="mt-2 flex flex-row justify-between items-start relative z-10 px-4 h-[180px] gap-8">
+      <div className="mt-2 flex flex-row justify-between items-stretch relative z-10 px-4 h-[180px] gap-8">
         
         {/* Left Side: Quotes Section - Spiritual reflections */}
-        <div className="flex-1 flex flex-col gap-3 pt-4 border-t border-emerald-100/30">
+        <div className="flex-1 flex flex-col gap-3 pt-4 border-t border-emerald-100/30 justify-end pb-4">
           <div className="text-emerald-900/80 text-[12px] font-bold serif-font italic text-left leading-relaxed">
             {halfMonth.season === Season.HEMANTA && `[Ref.H] "Cold winds of Hemanta remind the wise to kindle the inner fire of Samādhi."`}
             {halfMonth.season === Season.GIMHA && `[Ref.G] "As the sun blazes in Giṃha, let the heart find cool refuge in the Dhamma-forest."`}
