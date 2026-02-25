@@ -164,7 +164,8 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
     <div className={`calendar-grid-container flex flex-col gap-0.5 w-full p-6 bg-white relative transition-all duration-500 h-full overflow-hidden`}>
       
       {/* Header Section: Adjusted layout to move info adjacent to title */}
-      <div className="flex flex-row items-end justify-center gap-6 mb-2 pt-1 z-10 relative w-full pl-12">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-end mb-2 pt-1 z-10 relative w-full">
+        <div /> {/* Left spacer to ensure center column is perfectly centered */}
         {/* Center Title Section - Reduced size slightly */}
         <div className="flex flex-col items-center">
           <h2 className="text-xl font-black text-emerald-950 tracking-tighter uppercase italic serif-font">
@@ -174,7 +175,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
         </div>
 
         {/* Shifted Info Box: Moved from top-right to adjacent to title */}
-        <div className="flex flex-col justify-end pb-0.5 h-full pl-3 border-l border-emerald-100">
+        <div className="flex flex-col justify-end pb-0.5 h-full pl-3 border-l border-emerald-100 ml-6">
           <div className="text-emerald-700 font-black text-[7px] uppercase tracking-wider serif-font leading-none">
             {halfMonth.monthNumber} {monthName} {moonPhase}
           </div>
@@ -226,7 +227,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
       <div className="mt-2 flex flex-row justify-between items-stretch relative z-10 px-4 h-[180px] gap-8">
         
         {/* Left Side: Quotes Section - Spiritual reflections */}
-        <div className="flex-1 flex flex-col gap-3 pt-4 border-t border-emerald-100/30 justify-end pb-4">
+        <div className="flex-1 flex flex-col gap-3 border-t border-emerald-100/30 justify-end">
           <div className="text-emerald-900/80 text-[12px] font-bold serif-font italic text-left leading-relaxed">
             {halfMonth.season === Season.HEMANTA && `[Ref.H] "Cold winds of Hemanta remind the wise to kindle the inner fire of Samādhi."`}
             {halfMonth.season === Season.GIMHA && `[Ref.G] "As the sun blazes in Giṃha, let the heart find cool refuge in the Dhamma-forest."`}
