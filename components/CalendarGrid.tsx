@@ -223,15 +223,28 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
       </div>
 
       {/* Refined Footer Area */}
-      <div className="mt-2 flex flex-col relative z-10 px-4 h-[180px]">
+      <div className="mt-2 flex flex-row justify-between items-start relative z-10 px-4 h-[180px] gap-8">
         
-        {/* Top Info row: Image and Main Nakkhatta Details */}
-        <div className="flex flex-row-reverse justify-between items-center mb-1 flex-1 min-h-0">
-          
+        {/* Left Side: Quotes Section - Spiritual reflections */}
+        <div className="flex-1 flex flex-col gap-3 pt-4 border-t border-emerald-100/30">
+          <div className="text-emerald-900/80 text-[12px] font-bold serif-font italic text-left leading-relaxed">
+            {halfMonth.season === Season.HEMANTA && `[Ref.H] "Cold winds of Hemanta remind the wise to kindle the inner fire of Samādhi."`}
+            {halfMonth.season === Season.GIMHA && `[Ref.G] "As the sun blazes in Giṃha, let the heart find cool refuge in the Dhamma-forest."`}
+            {halfMonth.season === Season.VASSANA && `[Ref.V] "Vassāna rains nourish the earth; so does the Dhamma wash away the stains of the heart."`}
+          </div>
+          {nak1?.paliQuote && (
+             <div className="text-stone-500 text-[11px] font-serif italic text-left max-w-md">
+               [Ref.{nak1.number}] "{nak1.paliQuote} {nak1.qualityQuote ? `— ${nak1.qualityQuote}` : ''}"
+             </div>
+          )}
+        </div>
+
+        {/* Right Side: Nakkhatta Details */}
+        <div className="flex-shrink-0 flex flex-row-reverse items-center gap-6 h-full">
           {nak1 ? (
-            <div className="flex flex-row-reverse gap-8 items-center h-full">
+            <div className="flex flex-row-reverse gap-6 items-center h-full">
               {/* Constellation Image: Prioritize generated AI images */}
-              <div className="w-48 h-48 flex-shrink-0 flex items-center justify-center group overflow-hidden">
+              <div className="w-44 h-44 flex-shrink-0 flex items-center justify-center group overflow-hidden">
                 {(nakkhattaImages[nak1.number] || nak1.imageUrl) ? (
                   <CommonsLink imageUrl={nakkhattaImages[nak1.number] || nak1.imageUrl || '#'}>
                     <img 
@@ -269,25 +282,9 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
               </div>
             </div>
           ) : (
-            <div className="flex-1 text-right text-stone-300 text-[8px] uppercase font-bold tracking-[0.4em] italic serif-font self-center">
+            <div className="text-right text-stone-300 text-[8px] uppercase font-bold tracking-[0.4em] italic serif-font self-center">
                Seasonal Transit Interval
             </div>
-          )}
-
-          <div className="flex-1"></div>
-        </div>
-
-        {/* Bottom Quote Section: Spiritual reflections */}
-        <div className="w-full pt-3 border-t border-emerald-100/30 flex flex-col gap-1.5 overflow-hidden mb-2 items-start">
-          <div className="text-emerald-900/80 text-[11px] font-bold serif-font italic text-left px-4 leading-relaxed">
-            {halfMonth.season === Season.HEMANTA && `[Ref.H] "Cold winds of Hemanta remind the wise to kindle the inner fire of Samādhi."`}
-            {halfMonth.season === Season.GIMHA && `[Ref.G] "As the sun blazes in Giṃha, let the heart find cool refuge in the Dhamma-forest."`}
-            {halfMonth.season === Season.VASSANA && `[Ref.V] "Vassāna rains nourish the earth; so does the Dhamma wash away the stains of the heart."`}
-          </div>
-          {nak1?.paliQuote && (
-             <div className="text-stone-500 text-[10px] font-serif italic text-left px-4 max-w-4xl">
-               [Ref.{nak1.number}] "{nak1.paliQuote} {nak1.qualityQuote ? `— ${nak1.qualityQuote}` : ''}"
-             </div>
           )}
         </div>
       </div>

@@ -35,7 +35,7 @@ const EventsView: React.FC<EventsViewProps> = ({ data, onClose }) => {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse min-w-[1400px] text-xs">
+        <table className="w-full text-left border-collapse min-w-[1200px] text-xs">
           <thead>
             <tr className="bg-stone-900 text-stone-400 text-[9px] uppercase tracking-[0.2em]">
               <th className="p-4 font-black border-r border-stone-800">Date</th>
@@ -65,7 +65,9 @@ const EventsView: React.FC<EventsViewProps> = ({ data, onClose }) => {
                 <td className="p-4 border-r border-stone-100 text-stone-500">{evt.location || '-'}</td>
                 <td className="p-4 border-r border-stone-100 text-stone-500">{evt.people || '-'}</td>
                 <td className="p-4 border-r border-stone-100 text-stone-500">{evt.sutta || '-'}</td>
-                <td className="p-4 text-stone-500">{evt.note || '-'}</td>
+                <td className={`p-4 text-stone-500 ${evt.note?.includes('Sunrise') ? 'bg-amber-50/50 font-medium text-stone-700' : ''}`}>
+                  {evt.note || '-'}
+                </td>
               </tr>
             ))}
           </tbody>

@@ -23,7 +23,7 @@ export const NAKSHATRAS: Nakshatra[] = [
     indianZodiac: "Aries", 
     westernZodiac: "Aries", 
     season: Season.VASSANA, 
-    pakkha: "7", 
+    pakkha: "6", 
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f8/Aries_constellation_map.svg",
     tithi14: "Yes",
     paliQuote: BASE_QUOTES.pali,
@@ -386,8 +386,8 @@ export const NAKSHATRAS: Nakshatra[] = [
     lord: "Sun", 
     indianZodiac: "Sagittarius", 
     westernZodiac: "Sagittarius/Capricorn", 
-    season: Season.VASSANA, 
-    pakkha: "1",
+    season: Season.GIMHA, 
+    pakkha: "8",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Sagittarius_constellation_map.svg",
     tithi14: "Yes"
   },
@@ -405,7 +405,7 @@ export const NAKSHATRAS: Nakshatra[] = [
     indianZodiac: "Capricorn", 
     westernZodiac: "Capricorn", 
     season: Season.VASSANA, 
-    pakkha: "2",
+    pakkha: "1",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Aquila_constellation_map.svg",
     tithi14: "No"
   },
@@ -423,7 +423,7 @@ export const NAKSHATRAS: Nakshatra[] = [
     indianZodiac: "Capricorn", 
     westernZodiac: "Capricorn/Aquarius", 
     season: Season.VASSANA, 
-    pakkha: "3",
+    pakkha: "2",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Delphinus_constellation_map.svg",
     tithi14: "Yes"
   },
