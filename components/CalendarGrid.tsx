@@ -43,7 +43,7 @@ const DayCell: React.FC<{ day: any; isLast: boolean; isKanha: boolean; paliData:
   const isMoonDay = !!paliData;
   const isSukka = !isKanha;
   
-  const bgColor = 'bg-transparent';
+  const bgColor = (isMoonDay && isSukka) ? 'bg-stone-200/90' : 'bg-transparent';
 
   return (
     <div className={`relative border border-stone-300 h-full flex flex-col p-1 transition-all rounded-lg overflow-hidden ${bgColor} hover:bg-stone-50 shadow-sm`}>
@@ -229,15 +229,32 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
         {/* Left Side: Quotes Section - Spiritual reflections */}
         <div className="flex-1 flex flex-col gap-3 border-t border-emerald-100/30 justify-end">
           <div className="text-emerald-900/80 text-[12px] font-bold serif-font italic text-left leading-relaxed">
-            {halfMonth.season === Season.HEMANTA && `[Ref.H] "Cold winds of Hemanta remind the wise to kindle the inner fire of Samādhi."`}
-            {halfMonth.season === Season.GIMHA && `[Ref.G] "As the sun blazes in Giṃha, let the heart find cool refuge in the Dhamma-forest."`}
-            {halfMonth.season === Season.VASSANA && `[Ref.V] "Vassāna rains nourish the earth; so does the Dhamma wash away the stains of the heart."`}
+            {halfMonth.season === Season.GIMHA && halfMonth.seasonalPakkhaNumber === 2 ? (
+              <a 
+                href="https://suttacentral.net/sn4.5/en/sujato?lang=en&layout=linebyline&reference=main%2Cbj%2Ccck%2Ccsp%2Cdr%2Ckm%2Clv%2Cmaku%2Cmc%2Cmr%2Cms%2Cndp%2Cpts%2Csi%2Csya%2Cvri&notes=asterisk&highlight=false&script=latin#:~:text=Wander%20forth%2C%20mendicants%2C%20for%20the%20welfare%20and%20happiness%20of%20the%20people%2C%20out%20of%20sympathy%20for%20the%20world%2C%20for%20the%20benefit%2C%20welfare%2C%20and%20happiness%20of%20gods%20and%20humans."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-emerald-700 transition-colors"
+              >
+                [SN 4.5] "Wander forth, mendicants, for the welfare and happiness of the people, out of sympathy for the world, for the benefit, welfare, and happiness of gods and humans."
+              </a>
+            ) : halfMonth.season === Season.GIMHA && halfMonth.seasonalPakkhaNumber === 3 ? (
+              <a 
+                href="https://suttacentral.net/mn7/en/sujato?lang=en&layout=linebyline&reference=main%2Cbj%2Ccck%2Ccsp%2Cdr%2Ckm%2Clv%2Cmaku%2Cmc%2Cmr%2Cms%2Cndp%2Cpts%2Csi%2Csya%2Cvri&notes=asterisk&highlight=false&script=latin#:~:text=%E2%80%9CWhy%2C%20brahmin%2C%20go%20to%20the%20B%C4%81huk%C4%81%20River%3F,%E2%80%9CIt%20is%20here%2C%20brahmin%2C%20that%20you%20should%20bathe%2C%0ATo%20make%20yourself%20a%20refuge%20for%20all%20beings."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-emerald-700 transition-colors"
+              >
+                [MN 7] "Why, brahmin, go to the Bāhukā River?...It is here, brahmin, that you should bathe, To make yourself a refuge for all beings."
+              </a>
+            ) : (
+              <>
+                {halfMonth.season === Season.HEMANTA && `[Ref.H] "Cold winds of Hemanta remind the wise to kindle the inner fire of Samādhi."`}
+                {halfMonth.season === Season.GIMHA && `[Ref.G] "As the sun blazes in Giṃha, let the heart find cool refuge in the Dhamma-forest."`}
+                {halfMonth.season === Season.VASSANA && `[Ref.V] "Vassāna rains nourish the earth; so does the Dhamma wash away the stains of the heart."`}
+              </>
+            )}
           </div>
-          {nak1?.paliQuote && (
-             <div className="text-stone-500 text-[11px] font-serif italic text-left max-w-md">
-               [Ref.{nak1.number}] "{nak1.paliQuote} {nak1.qualityQuote ? `— ${nak1.qualityQuote}` : ''}"
-             </div>
-          )}
         </div>
 
         {/* Right Side: Nakkhatta Details */}
@@ -266,10 +283,14 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
                 </div>
                 <div className="relative inline-block">
                   <span className="absolute -top-1 -left-4 text-[7px] font-black text-stone-300">#{nak1.number}</span>
-                  {/* Reduced Nakkhatta Title size */}
-                  <WikiLink query={nak1.pali} className="text-xl font-black text-emerald-950 uppercase tracking-tighter leading-none block serif-font">
+                  <a 
+                    href={`https://en.wikipedia.org/wiki/List_of_Nakshatras#${nak1.sanskrit}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-xl font-black text-emerald-950 uppercase tracking-tighter leading-none block serif-font hover:text-emerald-700 transition-all cursor-help"
+                  >
                       {nak1.pali}
-                  </WikiLink>
+                  </a>
                 </div>
                 <div className="text-[9px] font-bold text-emerald-600 italic leading-tight mt-0.5 serif-font">
                   "{nak1.meaning}"

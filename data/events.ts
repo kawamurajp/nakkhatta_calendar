@@ -46,5 +46,33 @@ export const EVENTS_DB: EventDef[] = [
     solarMonth: 2, // March
     solarDay: 17,
     note: "Sunrise: 06:10 GMT, Sunset: 18:08 GMT. Day Length: ~11h 58m (closest to 12h split for London)."
+  },
+  {
+    id: 'songkran-1',
+    name: "Songkran (Maha Songkran Day)",
+    type: 'Solar',
+    description: "The first day of the traditional Thai New Year festival. The sun enters the sign of Aries.",
+    solarMonth: 3, // April
+    solarDay: 13,
+    theme: "New Beginnings",
+    note: "Traditional Thai New Year"
+  },
+  {
+    id: 'songkran-2',
+    name: "Songkran (Wan Nao)",
+    type: 'Solar',
+    description: "The second day of Songkran, the transition day between the old year and the new year.",
+    solarMonth: 3, // April
+    solarDay: 14,
+    note: "Transition Day"
+  },
+  {
+    id: 'songkran-3',
+    name: "Songkran (Wan Thaloeng Sok)",
+    type: 'Solar',
+    description: "The third day of Songkran, the official start of the new year.",
+    solarMonth: 3, // April
+    solarDay: 15,
+    note: "New Year's Day"
   }
 ];

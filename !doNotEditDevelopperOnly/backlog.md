@@ -24,14 +24,14 @@
 
 #prompts (for ChatGTP marginal art generation, https://chatgpt.com/images)
 
-Can you add the marginal art to this calendar without adding anything inside the calendar boxes? The theme is spring, hand, forest, monk, and water-pot.
-
-
-Please add marginal art integrated with the calendar I uploaded. 
-Theme is spring, hand, forest, monk, water-pot.
+Can you add the marginal art to this calendar without adding anything inside the calendar boxes? The theme is spring, forest, monk, and .
 
 
 
+
+Please add marginal art integrated with the image I uploaded without modifying the number of boxes and anything inside the boxes. 
+The theme is ...
+forest, monk, river, water-pouring, and the "independent one".
 
 The timely themes are the curent events and the nakkhatta's theme.
 

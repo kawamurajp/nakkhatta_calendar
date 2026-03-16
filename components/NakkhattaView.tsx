@@ -113,7 +113,14 @@ const NakkhattaView: React.FC<NakkhattaViewProps> = ({ currentPakkha }) => {
                       <span className="text-[10px] font-bold block mt-1 text-stone-400">{n.number}</span>
                     </td>
                     <td className="p-4 border-r border-stone-100">
-                      <div className="font-black text-stone-900 uppercase">{n.pali}</div>
+                      <a 
+                        href={`https://en.wikipedia.org/wiki/List_of_Nakshatras#${n.sanskrit}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="font-black text-stone-900 uppercase hover:text-amber-600 transition-colors"
+                      >
+                        {n.pali}
+                      </a>
                       <div className="text-[10px] text-stone-400 uppercase">{n.sanskrit}</div>
                     </td>
                     <td className="p-4 border-r border-stone-100 italic text-stone-500">{n.associatedStars}</td>

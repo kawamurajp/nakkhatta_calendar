@@ -280,7 +280,7 @@ export const NAKSHATRAS: Nakshatra[] = [
     westernZodiac: "Libra", 
     season: Season.GIMHA, 
     pakkha: "3",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Bootes_constellation_map.svg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/75/Bootes_constellation_map.png",
     tithi14: "Yes"
   },
   { 
