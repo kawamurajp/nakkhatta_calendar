@@ -298,7 +298,7 @@ export const NAKSHATRAS: Nakshatra[] = [
     westernZodiac: "Libra/Scorpio", 
     season: Season.GIMHA, 
     pakkha: "4",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/75/Libra_constellation_map.svg",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7d/Libra_constellation_map.png",
     tithi14: "No"
   },
   { 
@@ -335,7 +335,10 @@ export const NAKSHATRAS: Nakshatra[] = [
     season: Season.GIMHA, 
     pakkha: "6",
     imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Scorpius_constellation_map.svg",
-    tithi14: "No"
+    tithi14: "No",
+    paliQuote: "Handa dāni, bhikkhave, āmantayāmi vo...",
+    qualityQuote: "Conditions fall apart. Persist with diligence.",
+    eventQuote: "DN 16: Mahāparinibbāna Sutta"
   },
   { 
     number: 19, 

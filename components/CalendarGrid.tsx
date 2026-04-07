@@ -247,7 +247,16 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ halfMonth, beYear, adYear, 
               >
                 [MN 7] "Why, brahmin, go to the Bāhukā River?...It is here, brahmin, that you should bathe, To make yourself a refuge for all beings."
               </a>
-            ) : (
+            ) : halfMonth.season === Season.GIMHA && halfMonth.seasonalPakkhaNumber === 6 ? (
+              <a 
+                href="https://suttacentral.net/dn16/en/sujato?lang=en&layout=linebyline&reference=main%2Cbj%2Ccck%2Ccsp%2Cdr%2Ckm%2Clv%2Cmaku%2Cmc%2Cmr%2Cms%2Cndp%2Cpts%2Csi%2Csya%2Cvri&notes=asterisk&highlight=false&script=latin#:~:text=%E2%80%9CCome%20now%2C%20mendicants%2C%20I%20say%20to%20you%20all%3A%0A%E2%80%98Conditions%20fall%20apart.%20Persist%20with%20diligence.%E2%80%99%E2%80%9D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-emerald-700 transition-colors"
+              >
+                [DN 16] “Come now, mendicants, I say to you all: ‘Conditions fall apart. Persist with diligence.’”
+              </a>
+            ) : halfMonth.season === Season.GIMHA && halfMonth.seasonalPakkhaNumber === 4 ? null : (
               <>
                 {halfMonth.season === Season.HEMANTA && `[Ref.H] "Cold winds of Hemanta remind the wise to kindle the inner fire of Samādhi."`}
                 {halfMonth.season === Season.GIMHA && `[Ref.G] "As the sun blazes in Giṃha, let the heart find cool refuge in the Dhamma-forest."`}

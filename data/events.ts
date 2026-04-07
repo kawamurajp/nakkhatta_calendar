@@ -74,5 +74,29 @@ export const EVENTS_DB: EventDef[] = [
     solarMonth: 3, // April
     solarDay: 15,
     note: "New Year's Day"
+  },
+  {
+    id: 'vesak-puja',
+    name: "Vesak Pūjā (Visākha Pūjā)",
+    type: 'Lunar',
+    description: "Commemorating the Birth, Enlightenment, and Passing Away of the Buddha.",
+    season: Season.GIMHA,
+    seasonalPakkha: 4,
+    tithi: 15,
+    theme: "Enlightenment",
+    quote: "Conditions fall apart. Persist with diligence.",
+    ref: "Mahāparinibbāna Sutta",
+    sutta: "Digha Nikaya 16"
+  },
+  {
+    id: 'amaravati-vesak-festival',
+    name: "Amaravati Vesak Festival",
+    type: 'Solar',
+    description: "Public celebration of Vesak at Amaravati Buddhist Monastery.",
+    solarMonth: 4, // May
+    solarDay: 31,
+    theme: "Community",
+    location: "Amaravati Buddhist Monastery",
+    note: "Vesak Festival 2026"
   }
 ];
